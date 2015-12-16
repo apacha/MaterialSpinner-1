@@ -245,7 +245,7 @@ public class MaterialSpinner
 
     @Override
     public int getSelectedItemPosition() {
-        return super.getSelectedItemPosition();
+        return super.getSelectedItemPosition()-1;
     }
 
     private void initPadding() {
@@ -823,8 +823,12 @@ public class MaterialSpinner
 
     @Override
     public void setAdapter(SpinnerAdapter adapter) {
-        hintAdapter = new HintAdapter(adapter, getContext());
-        super.setAdapter(hintAdapter);
+        if(adapter instanceof HintAdapter) {
+            super.setAdapter(adapter);
+        } else {
+            hintAdapter = new HintAdapter(adapter, getContext());
+            super.setAdapter(hintAdapter);
+        }
     }
 
     @Override
