@@ -93,6 +93,7 @@ public class MaterialSpinner
     private float arrowSize;
     private boolean enableErrorLabel;
     private boolean enableFloatingLabel;
+    private boolean alwaysShowFloatingLabel;
     private boolean isRtl;
 
     private HintAdapter hintAdapter;
@@ -179,6 +180,7 @@ public class MaterialSpinner
         arrowSize = array.getDimension(R.styleable.MaterialSpinner_ms_arrowSize, dpToPx(DEFAULT_ARROW_WIDTH_DP));
         enableErrorLabel = array.getBoolean(R.styleable.MaterialSpinner_ms_enableErrorLabel, true);
         enableFloatingLabel = array.getBoolean(R.styleable.MaterialSpinner_ms_enableFloatingLabel, true);
+        alwaysShowFloatingLabel = array.getBoolean(R.styleable.MaterialSpinner_ms_alwaysShowFloatingLabel, false);
         isRtl = array.getBoolean(R.styleable.MaterialSpinner_ms_isRtl, false);
 
         String typefacePath = array.getString(R.styleable.MaterialSpinner_ms_typeface);
@@ -288,7 +290,7 @@ public class MaterialSpinner
         }
     }
 
-    private void showFloatingLabel() {
+    public void showFloatingLabel() {
         if (floatingLabelAnimator != null) {
             floatingLabelVisible = true;
             if (floatingLabelAnimator.isRunning()) {
@@ -299,7 +301,7 @@ public class MaterialSpinner
         }
     }
 
-    private void hideFloatingLabel() {
+    public void hideFloatingLabel() {
         if (floatingLabelAnimator != null) {
             floatingLabelVisible = false;
             floatingLabelAnimator.reverse();
@@ -519,7 +521,7 @@ public class MaterialSpinner
                 if (hint != null || floatingLabelText != null) {
                     if (!floatingLabelVisible && position != 0) {
                         showFloatingLabel();
-                    } else if (floatingLabelVisible && position == 0) {
+                    } else if (floatingLabelVisible && (position == 0 && !alwaysShowFloatingLabel)) {
                         hideFloatingLabel();
                     }
                 }
