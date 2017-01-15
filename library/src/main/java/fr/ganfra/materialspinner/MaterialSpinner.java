@@ -82,6 +82,7 @@ public class MaterialSpinner
     private CharSequence error;
     private CharSequence hint;
     private int hintColor;
+    private float hintTextSize;
     private CharSequence floatingLabelText;
     private int floatingLabelColor;
     private boolean multiline;
@@ -172,6 +173,7 @@ public class MaterialSpinner
         error = array.getString(R.styleable.MaterialSpinner_ms_error);
         hint = array.getString(R.styleable.MaterialSpinner_ms_hint);
         hintColor = array.getColor(R.styleable.MaterialSpinner_ms_hintColor, baseColor);
+        hintTextSize = array.getDimension(R.styleable.MaterialSpinner_ms_hintTextSize, -1);
         floatingLabelText = array.getString(R.styleable.MaterialSpinner_ms_floatingLabelText);
         floatingLabelColor = ContextCompat.getColor(getContext(), R.color.floating_label_color);
         multiline = array.getBoolean(R.styleable.MaterialSpinner_ms_multiline, true);
@@ -957,6 +959,8 @@ public class MaterialSpinner
             textView.setText(hint);
             textView.setTextColor(MaterialSpinner.this.isEnabled() ? hintColor : disabledColor);
             textView.setTag(HINT_TYPE);
+            if (hintTextSize != -1)
+                textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, hintTextSize);
             if (!isDropDownView) {
                 textView.setPadding(0, 0, 0, 0);
             }
