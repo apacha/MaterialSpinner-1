@@ -14,6 +14,8 @@ import android.widget.*;
 
 import com.nineoldandroids.animation.*;
 
+import java.util.*;
+
 
 public class MaterialSpinner extends AppCompatSpinner implements ValueAnimator.AnimatorUpdateListener {
 
@@ -113,6 +115,12 @@ public class MaterialSpinner extends AppCompatSpinner implements ValueAnimator.A
         init(context, attrs);
     }
 
+    public void setItems(final List<String> items) {
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, items);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        setAdapter(adapter);
+    }
 
     /*
     * **********************************************************************************
