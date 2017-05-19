@@ -3,4 +3,9 @@
     <color name="disabled_color">#44000000</color>
     <color name="error_color">#E7492E</color>
 
+    <!-- check https://storage.googleapis.com/material-design/publish/material_v_11/assets/0B5ZSepuCX1xORDV6SjN6WEhHUlU/single1.png -->
+    <color name="underline_color">#939393</color>
+
+    <color name="floating_label_color">#8a000000</color>
+
 </resources>
