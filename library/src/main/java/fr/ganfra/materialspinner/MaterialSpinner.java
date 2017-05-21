@@ -21,8 +21,6 @@ public class MaterialSpinner extends AppCompatSpinner implements ValueAnimator.A
 
     public static final int DEFAULT_ARROW_WIDTH_DP = 12;
 
-    private static final String TAG = MaterialSpinner.class.getSimpleName();
-
     public boolean alwaysShowFloatingLabel = true;
 
     //Paint objects
@@ -185,6 +183,7 @@ public class MaterialSpinner extends AppCompatSpinner implements ValueAnimator.A
         lastPosition = -1;
         currentNbErrorLines = minNbErrorLines;
 
+        setPopupBackgroundResource(R.color.popup_background);
     }
 
 
@@ -426,7 +425,8 @@ public class MaterialSpinner extends AppCompatSpinner implements ValueAnimator.A
                     getContext().getResources().getColor(R.color.underline_color);
             if (isSelected || hasFocus()) {
                 // OLD: paint.setColor(highlightColor);
-                paint.setColor(underLineColor);
+                // paint.setColor(underLineColor);
+                paint.setColor(highlightColor);
             } else {
                 paint.setColor(isEnabled() ? underLineColor : disabledColor);
             }
@@ -457,11 +457,12 @@ public class MaterialSpinner extends AppCompatSpinner implements ValueAnimator.A
     }
 
     private void drawSelector(Canvas canvas, int posX, int posY) {
-        if (isSelected || hasFocus()) {
+        /*if (isSelected || hasFocus()) {
             paint.setColor(highlightColor);
         } else {
             paint.setColor(isEnabled() ? arrowColor : disabledColor);
-        }
+        }*/
+        paint.setColor(isEnabled() ? arrowColor : disabledColor);
 
         Point point1 = selectorPoints[0];
         Point point2 = selectorPoints[1];
@@ -913,23 +914,27 @@ public class MaterialSpinner extends AppCompatSpinner implements ValueAnimator.A
             }
             position = hint != null ? position - 1 : position;
 	        if (isDropDownView) {
-                return mSpinnerAdapter.getDropDownView(position, convertView, parent);
+                final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.spinner_item_dropdown, null);
+                ((TextView)view.findViewById(R.id.textView)).setText((String)getItem(position));
+		        return view;
+                //mSpinnerAdapter.getDropDownView(position, convertView, parent);
             } else {
-                View view = mSpinnerAdapter.getView(position, convertView, parent);
-                view.setPadding(0, 0, 0, 0);
-                ((TextView)view).setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+                final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.spinner_item, null);
+                ((TextView)view.findViewById(R.id.textView)).setText((String)getItem(position));
 		        return view;
             }
         }
 
         private View getHintView(final View convertView, final ViewGroup parent, final boolean isDropDownView) {
-
             final LayoutInflater inflater = LayoutInflater.from(mContext);
             final int resid = isDropDownView ? android.R.layout.simple_spinner_dropdown_item : android.R.layout.simple_spinner_item;
             final TextView textView = (TextView) inflater.inflate(resid, parent, false);
             textView.setText(hint);
             textView.setTextColor(MaterialSpinner.this.isEnabled() ? hintColor : disabledColor);
             textView.setTag(HINT_TYPE);
+            if (!isDropDownView) {
+                textView.setPadding(0, 0, 0, 0);
+            }
             return textView;
         }
 

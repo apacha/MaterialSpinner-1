@@ -8,4 +8,6 @@
 
     <color name="floating_label_color">#8a000000</color>
 
+    <color name="popup_background">#fff</color>
+
 </resources>

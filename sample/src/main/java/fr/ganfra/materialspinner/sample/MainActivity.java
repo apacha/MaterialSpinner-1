@@ -1,14 +1,14 @@
 package fr.ganfra.materialspinner.sample;
 
-import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-import android.view.View;
-import android.widget.ArrayAdapter;
+import android.os.*;
+import android.support.v7.app.*;
+import android.view.*;
+import android.widget.*;
 
-import fr.ganfra.materialspinner.MaterialSpinner;
+import fr.ganfra.materialspinner.*;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
     private static final String ERROR_MSG = "Very very very long error message to get scrolling or multiline animation when the error button is clicked";
     private static final String[] ITEMS = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6"};
@@ -16,7 +16,6 @@ public class MainActivity extends ActionBarActivity {
     private ArrayAdapter<String> adapter;
 
     MaterialSpinner spinner1;
-    MaterialSpinner spinner2;
     MaterialSpinner spinner3;
     MaterialSpinner spinner4;
     MaterialSpinner spinner5;
@@ -35,7 +34,6 @@ public class MainActivity extends ActionBarActivity {
 
 
         initSpinnerHintAndFloatingLabel();
-        initSpinnerOnlyHint();
         initSpinnerNoHintNoFloatingLabel();
         initSpinnerMultiline();
         initSpinnerScrolling();
@@ -46,10 +44,6 @@ public class MainActivity extends ActionBarActivity {
         spinner1 = (MaterialSpinner) findViewById(R.id.spinner1);
         spinner1.setAdapter(adapter);
         spinner1.setPaddingSafe(0, 0, 0, 0);
-    }
-
-    private void initSpinnerOnlyHint() {
-        spinner2 = (MaterialSpinner) findViewById(R.id.spinner2);
     }
 
     private void initSpinnerNoHintNoFloatingLabel() {
