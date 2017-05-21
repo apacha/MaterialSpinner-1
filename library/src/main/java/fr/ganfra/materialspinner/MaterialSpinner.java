@@ -135,8 +135,9 @@ public class MaterialSpinner extends AppCompatSpinner implements ValueAnimator.A
         initFloatingLabelAnimator();
         initOnItemSelectedListener();
         setMinimumHeight(getPaddingTop() + getPaddingBottom() + minContentHeight);
+
         //Erase the drawable selector not to be affected by new size (extra paddings)
-        setBackgroundResource(R.drawable.my_background);
+        // setBackgroundResource(R.drawable.my_background);
 
     }
 
@@ -184,6 +185,8 @@ public class MaterialSpinner extends AppCompatSpinner implements ValueAnimator.A
         currentNbErrorLines = minNbErrorLines;
 
         setPopupBackgroundResource(R.color.popup_background);
+        // so the floating label can still be peeked when the popup opens from top to bottom
+	    setDropDownVerticalOffset(dpToPx(24));
     }
 
 
