@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "fr.ganfra.materialspinner.sample"
-        minSdkVersion 9
+        minSdkVersion 16 // should work down to minSdkVersion 9 but our app uses 16
         targetSdkVersion 25
         versionCode 4
         versionName "1.1.0"

@@ -187,8 +187,9 @@ public class MaterialSpinner extends AppCompatSpinner implements ValueAnimator.A
         setPopupBackgroundResource(R.color.popup_background);
         // so the floating label can still be peeked when the popup opens from top to bottom
 	    setDropDownVerticalOffset(dpToPx(24));
+        // otherwise we get a duplicated dropdown resource on API 25 (but it works for API 22!)
+        setBackground(null);
     }
-
 
     @Override
     public void setSelection(final int position) {
