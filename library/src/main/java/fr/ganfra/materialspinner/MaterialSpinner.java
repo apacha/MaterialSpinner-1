@@ -136,9 +136,12 @@ public class MaterialSpinner extends AppCompatSpinner implements ValueAnimator.A
         initOnItemSelectedListener();
         setMinimumHeight(getPaddingTop() + getPaddingBottom() + minContentHeight);
 
-        //Erase the drawable selector not to be affected by new size (extra paddings)
-        // setBackgroundResource(R.drawable.my_background);
+        // Erase the drawable selector not to be affected by new size (extra paddings)
 
+	    // otherwise we get a duplicated dropdown drawable, even when it precisely overlaps the own
+        // drawn dropdown drawable
+        // it will break on newer APIs!
+        setBackgroundResource(R.drawable.spinner_background);
     }
 
     private void initAttributes(Context context, AttributeSet attrs) {
@@ -175,6 +178,7 @@ public class MaterialSpinner extends AppCompatSpinner implements ValueAnimator.A
             typeface = Typeface.createFromAsset(getContext().getAssets(), typefacePath);
         }
 
+
         array.recycle();
 
         floatingLabelPercent = 0f;
@@ -187,8 +191,6 @@ public class MaterialSpinner extends AppCompatSpinner implements ValueAnimator.A
         setPopupBackgroundResource(R.color.popup_background);
         // so the floating label can still be peeked when the popup opens from top to bottom
 	    setDropDownVerticalOffset(dpToPx(24));
-        // otherwise we get a duplicated dropdown resource on API 25 (but it works for API 22!)
-        setBackground(null);
     }
 
     @Override
@@ -336,11 +338,6 @@ public class MaterialSpinner extends AppCompatSpinner implements ValueAnimator.A
         return Math.round(px);
     }
 
-    private float pxToDp(float px) {
-        final DisplayMetrics displayMetrics = getContext().getResources().getDisplayMetrics();
-        return px * displayMetrics.density;
-    }
-
     private void updatePadding() {
         int left = innerPaddingLeft;
         int top = innerPaddingTop + extraPaddingTop;
@@ -354,7 +351,7 @@ public class MaterialSpinner extends AppCompatSpinner implements ValueAnimator.A
         if (error != null) {
             float screenWidth = getWidth() - rightLeftSpinnerPadding;
             float errorTextWidth = textPaint.measureText(error.toString(), 0, error.length());
-            return errorTextWidth > screenWidth ? true : false;
+            return errorTextWidth > screenWidth;
         }
         return false;
     }
@@ -368,10 +365,6 @@ public class MaterialSpinner extends AppCompatSpinner implements ValueAnimator.A
             targetNbLines = Math.max(minNbErrorLines, nbErrorLines);
         }
         return targetNbLines;
-    }
-
-    private boolean isSpinnerEmpty() {
-        return (hintAdapter.getCount() == 0 && hint == null) || (hintAdapter.getCount() == 1 && hint != null);
     }
 
     /*
