@@ -1,9 +1,10 @@
 ## Features
 
-* Aligned text so you vertically align this in the same layout as a [MaterialEditText](https://github.com/rengwuxian/MaterialEditText) (as shown below in the screenshot)
+* Aligned text so you vertically align this in the same layout as a [MaterialEditText](https://github.com/rengwuxian/MaterialEditText) (as shown below in the last screenshot)
   * Make sure that your `MaterialEditText` uses a text size of `16sp`
     * See https://material.io/guidelines/components/text-fields.html#text-fields-states
 * Added `alwaysShowFloatingLabel`
+* Set `minSdkVersion` to 16 to drop the `NineOldAndroids` animation library dependency
 
 ## Screenshots
 

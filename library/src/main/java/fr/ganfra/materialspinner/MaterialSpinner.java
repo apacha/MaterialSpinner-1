@@ -1,5 +1,6 @@
 package fr.ganfra.materialspinner;
 
+import android.animation.*;
 import android.content.*;
 import android.content.res.*;
 import android.graphics.*;
@@ -12,12 +13,12 @@ import android.view.*;
 import android.view.animation.*;
 import android.widget.*;
 
-import com.nineoldandroids.animation.*;
-
 import java.util.*;
 
 
-public class MaterialSpinner extends AppCompatSpinner implements ValueAnimator.AnimatorUpdateListener {
+public class MaterialSpinner
+        extends AppCompatSpinner
+        implements ValueAnimator.AnimatorUpdateListener {
 
     public static final int DEFAULT_ARROW_WIDTH_DP = 12;
 
