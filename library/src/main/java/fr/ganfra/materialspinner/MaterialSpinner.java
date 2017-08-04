@@ -147,7 +147,7 @@ public class MaterialSpinner
 
     private void initAttributes(Context context, AttributeSet attrs) {
 
-        TypedArray defaultArray = context.obtainStyledAttributes(new int[]{R.attr.colorControlNormal, R.attr.colorPrimary});
+        TypedArray defaultArray = context.obtainStyledAttributes(new int[]{R.attr.colorControlNormal, R.attr.colorAccent});
         int defaultBaseColor = defaultArray.getColor(0, 0);
         int defaultHighlightColor = defaultArray.getColor(1, 0);
         int defaultErrorColor = context.getResources().getColor(R.color.error_color);
