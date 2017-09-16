@@ -15,21 +15,21 @@
 
         <fr.ganfra.materialspinner.MaterialSpinner
             android:id="@+id/spinner1"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             app:ms_floatingLabelText="floating label"/>
 
         <fr.ganfra.materialspinner.MaterialSpinner
             android:id="@+id/spinner3"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:ms_enableErrorLabel="false"
             app:ms_enableFloatingLabel="false"/>
 
         <fr.ganfra.materialspinner.MaterialSpinner
             android:id="@+id/spinner4"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:ms_alignLabels="false"
             app:ms_baseColor="@color/spinner_base_color"
@@ -42,7 +42,7 @@
 
         <fr.ganfra.materialspinner.MaterialSpinner
             android:id="@+id/spinner6"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:ms_enableErrorLabel="false"
             app:ms_enableFloatingLabel="false"
@@ -52,7 +52,7 @@
             app:ms_hintColor="#0000FF" />
 
         <Button
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Show/hide error"
             android:onClick="activateError"/>
