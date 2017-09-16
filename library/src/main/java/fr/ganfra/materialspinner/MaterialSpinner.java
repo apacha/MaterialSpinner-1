@@ -20,6 +20,11 @@ public class MaterialSpinner
         extends AppCompatSpinner
         implements ValueAnimator.AnimatorUpdateListener {
 
+    public interface TextProcessor {
+
+        String processTextInGetView(String input);
+    }
+
     public static final int DEFAULT_ARROW_WIDTH_DP = 12;
 
     public boolean alwaysShowFloatingLabel = true;
@@ -91,6 +96,8 @@ public class MaterialSpinner
     private boolean isRtl;
 
     private HintAdapter hintAdapter;
+
+    public TextProcessor textProcessor = null;
 
     /*
     * **********************************************************************************
@@ -917,8 +924,12 @@ public class MaterialSpinner
 		        return view;
                 //mSpinnerAdapter.getDropDownView(position, convertView, parent);
             } else {
+                String item = (String)getItem(position);
+                if (textProcessor != null) {
+                    item = textProcessor.processTextInGetView(item);
+                }
                 final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.spinner_item, null);
-                ((TextView)view.findViewById(R.id.textView)).setText((String)getItem(position));
+                ((TextView)view.findViewById(R.id.textView)).setText(item);
 		        return view;
             }
         }
