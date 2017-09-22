@@ -27,13 +27,17 @@ Use this dependency in your build.gradle file to reference this library in your 
 compile 'com.github.ganfra:material-spinner:1.1.2'
 ```
 
-If you use other libraries requiring nineoldandroids and appcompat-v7 like [MaterialEditText](https://github.com/rengwuxian/MaterialEditText/) make sure to exclude them :
+If you use other libraries requiring appcompat-v7 like [MaterialEditText](https://github.com/rengwuxian/MaterialEditText/) make sure to exclude them if you have issue at compile time :
 ```groovy
 compile ('com.github.ganfra:material-spinner:1.1.2'){
         exclude group: 'com.nineoldandroids', module: 'library'
         exclude group: 'com.android.support', module: 'appcompat-v7'
 }
 ```
+
+## Thanks
+
+Many thanks to Matías Dumrauf to help me supporting this library!
 
 
 ## Usages
