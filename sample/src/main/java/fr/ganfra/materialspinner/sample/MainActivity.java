@@ -1,7 +1,7 @@
 package fr.ganfra.materialspinner.sample;
 
 import android.os.*;
-import android.support.v7.app.*;
+import androidx.appcompat.app.*;
 import android.view.*;
 import android.widget.*;
 
@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     MaterialSpinner spinner3;
     MaterialSpinner spinner4;
     MaterialSpinner spinner5;
+    MaterialSpinner spinner6;
 
     private boolean shown = false;
 
@@ -37,7 +38,14 @@ public class MainActivity extends AppCompatActivity {
         initSpinnerNoHintNoFloatingLabel();
         initSpinnerMultiline();
         initSpinnerScrolling();
+        initSpinnerHintAndCustomHintView();
 
+    }
+
+    private void initSpinnerHintAndCustomHintView() {
+        spinner6 = (MaterialSpinner) findViewById(R.id.spinner6);
+        spinner6.setAdapter(adapter);
+        spinner4.setHint("Select an item");
     }
 
     private void initSpinnerHintAndFloatingLabel() {

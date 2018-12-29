@@ -5,8 +5,8 @@ import android.content.*;
 import android.content.res.*;
 import android.graphics.*;
 import android.os.*;
-import android.support.v4.content.*;
-import android.support.v7.widget.*;
+import androidx.core.content.*;
+import androidx.appcompat.widget.*;
 import android.text.*;
 import android.util.*;
 import android.view.*;
@@ -93,10 +93,13 @@ public class MaterialSpinner
     private float arrowSize;
     private boolean enableErrorLabel;
     private boolean enableFloatingLabel;
-    private boolean alwaysShowFloatingLabel;
     private boolean isRtl;
 
     private HintAdapter hintAdapter;
+
+    //Default hint views
+    private Integer mDropDownHintView;
+    private Integer mHintView;
 
     public TextProcessor textProcessor = null;
 
@@ -182,6 +185,8 @@ public class MaterialSpinner
         enableFloatingLabel = array.getBoolean(R.styleable.MaterialSpinner_ms_enableFloatingLabel, true);
         alwaysShowFloatingLabel = array.getBoolean(R.styleable.MaterialSpinner_ms_alwaysShowFloatingLabel, false);
         isRtl = array.getBoolean(R.styleable.MaterialSpinner_ms_isRtl, false);
+        mHintView = array.getResourceId(R.styleable.MaterialSpinner_ms_hintView, android.R.layout.simple_spinner_item);
+        mDropDownHintView = array.getResourceId(R.styleable.MaterialSpinner_ms_dropDownHintView, android.R.layout.simple_spinner_dropdown_item);
 
         String typefacePath = array.getString(R.styleable.MaterialSpinner_ms_typeface);
         if (typefacePath != null) {
@@ -621,6 +626,14 @@ public class MaterialSpinner
         return hint;
     }
 
+    public void setHintView(Integer resId){
+        this.mHintView = resId;
+    }
+
+    public void setDripDownHintView(Integer resId){
+        this.mDropDownHintView = resId;
+    }
+
     public void setFloatingLabelText(CharSequence floatingLabelText) {
         this.floatingLabelText = floatingLabelText;
         invalidate();
@@ -867,6 +880,7 @@ public class MaterialSpinner
             mContext = context;
         }
 
+
         @Override
         public int getViewTypeCount() {
             //Workaround waiting for a Google correction (https://code.google.com/p/android/issues/detail?id=79011)
@@ -938,7 +952,7 @@ public class MaterialSpinner
 
         private View getHintView(final View convertView, final ViewGroup parent, final boolean isDropDownView) {
             final LayoutInflater inflater = LayoutInflater.from(mContext);
-            final int resid = isDropDownView ? android.R.layout.simple_spinner_dropdown_item : android.R.layout.simple_spinner_item;
+            final int resid = isDropDownView ? mDropDownHintView : mHintView;
             final TextView textView = (TextView) inflater.inflate(resid, parent, false);
             textView.setText(hint);
             textView.setTextColor(MaterialSpinner.this.isEnabled() ? hintColor : disabledColor);
