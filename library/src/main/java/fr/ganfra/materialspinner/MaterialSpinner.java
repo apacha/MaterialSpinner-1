@@ -249,7 +249,8 @@ public class MaterialSpinner
     }
 
     public Object getSelectedItem() {
-        return super.getItemAtPosition(getSelectedItemPosition()-1);
+        final int pos = (hint == null) ? getSelectedItemPosition() : getSelectedItemPosition() - 1;
+        return super.getItemAtPosition(pos);
     }
 
     private void initPadding() {
